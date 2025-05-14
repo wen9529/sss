@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- 添加 user-scalable=no 阻止缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>高级十三水游戏</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,13 +29,14 @@
             </div>
         </div>
 
-        <div id="messageArea" class="message-area"></div> <!-- 消息区可以放在滚动区外部或内部 -->
+        <div id="messageArea" class="message-area"></div>
 
-        <!-- 新增一个包裹主要游戏内容的容器 -->
         <div class="game-content-wrapper">
             <div class="player-area">
                 <h2>我的手牌 (<span id="playerHandCount">0</span>张)</h2>
-                <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand"></div>
+                <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand">
+                    <!-- 卡牌将通过JS动态添加 -->
+                </div>
             </div>
 
             <div class="arrangement-area">
@@ -55,14 +56,14 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- end of game-content-wrapper -->
+        </div>
         
-        <div class="game-footer"> <!-- 页脚，用于放置总分和验证结果 -->
+        <div class="game-footer">
             <div id="validationResult" class="validation-result"></div>
             <div id="totalScoreDisplay" class="total-score-display">总得分: 0 水</div>
         </div>
 
-    </div> <!-- end of game-container -->
+    </div>
 
     <script type="module" src="js/main.js"></script>
     <!-- Audio elements -->
