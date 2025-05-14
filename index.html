@@ -15,7 +15,18 @@
             <button id="resetButton">重置游戏</button>
             <button id="checkArrangementButton">检查摆牌</button>
             <button id="autoArrangeButton" title="AI尝试自动摆牌">智能摆牌</button>
-            <span id="timerDisplay"></span> <!-- Optional: For timed games or AI thinking time -->
+        </div>
+        
+        <div class="game-info-panel">
+            <div class="audio-controls">
+                <label for="soundToggle">音效:</label>
+                <input type="checkbox" id="soundToggle" checked>
+                <label for="volumeControl">音量:</label>
+                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+            </div>
+            <div class="timer-section">
+                <span>思考计时: </span><span id="timerDisplay">00:00</span>
+            </div>
         </div>
 
         <div id="messageArea" class="message-area"></div>
@@ -45,17 +56,19 @@
             </div>
         </div>
         <div id="validationResult" class="validation-result"></div>
+        <div id="totalScoreDisplay" class="total-score-display">总得分: 0 水</div>
     </div>
 
     <!-- ES6 Module Import -->
     <script type="module" src="js/main.js"></script>
 
-    <!-- Audio elements (optional) -->
-    <!--
+    <!-- Audio elements (你需要提供这些音频文件) -->
     <audio id="audioDeal" src="audio/deal.mp3" preload="auto"></audio>
     <audio id="audioClick" src="audio/click.mp3" preload="auto"></audio>
     <audio id="audioPlace" src="audio/place.mp3" preload="auto"></audio>
     <audio id="audioInvalid" src="audio/invalid.mp3" preload="auto"></audio>
-    -->
+    <audio id="audioWin" src="audio/win.mp3" preload="auto"></audio>
+    <audio id="audioSpecial" src="audio/special.mp3" preload="auto"></audio> <!-- 特殊牌型音效 -->
+
 </body>
 </html>
