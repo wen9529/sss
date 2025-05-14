@@ -17,7 +17,7 @@ const io = new Server(server, {
 // --- 端口修改在这里 ---
 // Serv00 通常会通过 process.env.PORT 设置分配的端口。
 // 如果直接指定，请确保这是 Serv00 允许你使用的端口。
-const ASSIGNED_PORT = 34709; // 你指定的端口
+const ASSIGNED_PORT = 45078; // 你指定的端口
 const PORT = process.env.PORT || ASSIGNED_PORT;
 // --- 结束端口修改 ---
 
