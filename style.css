@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding-top: 20px; /* Add some padding at the top */
+}
+
+.game-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.controls button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.controls button:hover {
+    background-color: #45a049;
+}
+
+.player-hand-area, .arrangement-area {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.arrangement-area .arranged-hand {
+    margin-bottom: 15px;
+}
+
+.hand-zone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px; /* Ensure zone has some height */
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.card {
+    width: 70px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    display: inline-block; /* Important for layout */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card.selected {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    border-color: #ffcc00;
+}
+
+.card.placeholder { /* For empty slots in arranged hands */
+    background-color: #e0e0e0;
+    border-style: dashed;
+}
+
+.hand-type-display {
+    font-size: 0.9em;
+    color: #555;
+    margin-left: 10px;
+}
+
+.message-area {
+    margin-top: 20px;
+    padding: 10px;
+    color: red;
+    font-weight: bold;
+}
