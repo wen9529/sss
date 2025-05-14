@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>高级十三水游戏</title>
+    <title>十三水多人版</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 如果有 favicon.ico，可以取消下面这行的注释 -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
 <body>
     <div class="game-container">
         <h1>十三水</h1>
 
+        <!-- 房间控制区域 -->
+        <div class="room-management">
+            <input type="text" id="playerNameInput" placeholder="输入你的昵称 (可选)">
+            <div class="room-actions">
+                <input type="text" id="roomIdInput" placeholder="房间ID (加入时)">
+                <button id="createRoomButton">创建房间</button>
+                <button id="joinRoomButton">加入房间</button>
+            </div>
+            <div id="currentRoomInfo"></div>
+        </div>
+
         <div class="controls">
-            <button id="dealButton">发牌</button>
-            <button id="resetButton">重置游戏</button>
-            <button id="checkArrangementButton">检查摆牌</button>
+            <!-- "发牌"按钮现在是"准备/取消准备" -->
+            <button id="playerReadyButton">准备 / 取消准备</button>
+            <button id="resetArrangementButton">重置摆牌</button> <!-- 重置本地摆牌 -->
+            <!-- "检查摆牌"按钮现在是"提交摆牌" -->
+            <button id="submitArrangementButton">提交摆牌</button>
             <button id="autoArrangeButton" title="AI尝试自动摆牌">智能摆牌</button>
         </div>
         
@@ -25,22 +40,25 @@
                 <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
             </div>
             <div class="timer-section">
-                <span>思考计时: </span><span id="timerDisplay">00:00</span>
+                <span>计时: </span><span id="timerDisplay">00:00</span>
             </div>
         </div>
 
-        <div id="messageArea" class="message-area"></div>
+        <div id="messageArea" class="message-area">连接服务器中...</div>
+
+        <!-- 玩家列表/对手信息显示区域 -->
+        <div id="playersDisplayArea">
+            <!-- JS会填充这里 -->
+        </div>
 
         <div class="game-content-wrapper">
-            <div class="player-area">
+            <div class="player-area current-player-area"> <!-- 给当前玩家区域加个特定类 -->
                 <h2>我的手牌 (<span id="playerHandCount">0</span>张)</h2>
-                <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand">
-                    <!-- 卡牌将通过JS动态添加 -->
-                </div>
+                <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand"></div>
             </div>
 
-            <div class="arrangement-area">
-                <h2>摆牌区</h2>
+            <div class="arrangement-area current-player-arrangement"> <!-- 给当前玩家区域加个特定类 -->
+                <h2>我的摆牌区</h2>
                 <div class="arranged-hand-container">
                     <div class="arranged-hand">
                         <h3>头道 (3张) <span id="frontHandType" class="hand-type-display"></span></h3>
@@ -65,7 +83,11 @@
 
     </div>
 
+    <!-- Socket.IO 客户端库 -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <!-- 你的游戏主逻辑脚本 -->
     <script type="module" src="js/main.js"></script>
+    
     <!-- Audio elements -->
     <audio id="audioDeal" src="audio/deal.mp3" preload="auto"></audio>
     <audio id="audioClick" src="audio/click.mp3" preload="auto"></audio>
@@ -73,5 +95,6 @@
     <audio id="audioInvalid" src="audio/invalid.mp3" preload="auto"></audio>
     <audio id="audioWin" src="audio/win.mp3" preload="auto"></audio>
     <audio id="audioSpecial" src="audio/special.mp3" preload="auto"></audio>
+    <audio id="audioRoom" src="audio/room_join.mp3" preload="auto"></audio> <!-- 加入/创建房间音效 -->
 </body>
 </html>
