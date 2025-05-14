@@ -4,33 +4,27 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    /* 背景调亮: 使用一个更柔和的浅灰色或米色系 */
-    background-color: #e9ebee; /* 例如：一个非常浅的灰色 */
-    /* 或者一个暖色调的米白 */
-    /* background-color: #f5f5f5; */
-    color: #333; /* 深色文字以保证对比度 */
+    background-color: #e9ebee; 
+    color: #333; 
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .game-container {
-    /* 游戏容器背景调亮，但仍与body有区分 */
-    background-color: #ffffff; /* 白色背景 */
-    /* 或者一个非常浅的灰色 */
-    /* background-color: #f8f9fa; */
-    padding: 25px; /* 稍微增加内边距 */
+    background-color: #ffffff; 
+    padding: 25px; 
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* 阴影可以柔和一些 */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15); 
     text-align: center;
     width: 95%;
     max-width: 1100px;
 }
 
 h1, h2, h3 {
-    color: #2c3e50; /* 标题使用深蓝灰色，与浅色背景形成对比 */
+    color: #2c3e50; 
     margin-top: 0;
-    text-shadow: none; /* 在浅色背景下，文字阴影可能不需要 */
+    text-shadow: none; 
 }
 h1 { margin-bottom: 25px; font-size: 2.4em;}
 h2 { margin-bottom: 12px; font-size: 1.4em;}
@@ -42,17 +36,17 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 12px; /* 按钮间距可稍大 */
+    gap: 12px; 
 }
 
 .controls button {
-    padding: 12px 20px; /* 按钮稍大一些 */
+    padding: 12px 20px; 
     font-size: 16px;
     cursor: pointer;
     background-color: #3498db; 
     color: white;
     border: none;
-    border-radius: 8px; /* 更圆润的边角 */
+    border-radius: 8px; 
     transition: background-color 0.25s ease, transform 0.1s ease, box-shadow 0.25s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -72,10 +66,10 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-    padding: 12px 15px; /* 调整内边距 */
-    background-color: #f0f3f5; /* 浅灰色信息面板背景 */
+    padding: 12px 15px; 
+    background-color: #f0f3f5; 
     border-radius: 8px;
-    border: 1px solid #dfe4e8; /* 轻微边框 */
+    border: 1px solid #dfe4e8; 
 }
 
 .audio-controls {
@@ -85,7 +79,7 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
 }
 .audio-controls label {
     font-size: 0.95em;
-    color: #555; /* 深灰色标签文字 */
+    color: #555; 
 }
 #soundToggle {
     margin-right: 12px;
@@ -102,27 +96,27 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
 }
 #timerDisplay {
     font-weight: bold;
-    color: #e74c3c; /* 计时器用醒目的颜色，例如红色 */
+    color: #e74c3c; 
 }
 
 
 .player-area, .arrangement-area {
     margin-top: 25px;
-    padding: 20px; /* 增加内边距 */
-    background-color: #f8f9fa; /* 非常浅的灰色区域背景 */
-    border: 1px solid #dee2e6; /* 较浅的边框 */
+    padding: 20px; 
+    background-color: #f8f9fa; 
+    border: 1px solid #dee2e6; 
     border-radius: 10px;
 }
 
 .arrangement-area .arranged-hand-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* 道次之间的间距 */
+    gap: 20px; 
 }
 
 .arranged-hand {
-    background-color: #e9ecef; /* 每个道的背景，比区域背景稍深一点 */
-    padding: 15px; /* 增加内边距 */
+    background-color: #e9ecef; 
+    padding: 15px; 
     border-radius: 8px;
 }
 
@@ -131,62 +125,85 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: 120px; /* 确保足够高度 */
-    padding: 15px; /* 增加内边距 */
-    border: 2px dashed #ced4da; /* 虚线边框颜色 */
+    min-height: 120px; 
+    padding: 15px; 
+    border: 2px dashed #ced4da; 
     border-radius: 8px;
-    margin-top: 8px; /* 调整与标题的间距 */
+    margin-top: 8px; 
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .hand-zone.drag-over {
-    background-color: #cfe2f3; /* 拖拽悬浮时浅蓝色高亮 */
+    background-color: #cfe2f3; 
     border-style: solid;
     border-color: #a9ccee;
 }
 
-
+/* === 主要修改在这里：.card 和 .card::before === */
 .card {
     width: 70px;
     height: 100px;
-    background-size: cover;
+    /* background-color: #ffffff; */ /* 这个可以移除或注释掉，因为伪元素会提供背景 */
+    background-size: cover; 
     background-position: center;
-    /* 添加一个不透明的背景色，以防图片本身有透明区域或加载失败 */
-    background-color: #ffffff; /* 白色底，确保卡牌不透明 */
-    border: 1px solid #adb5bd; /* 卡牌边框 */
+    /* background-image 会应用到这个元素上 */
+    border: 1px solid #adb5bd; 
     border-radius: 6px;
     margin: 5px;
     cursor: grab;
-    display: inline-flex;
+    display: inline-flex; 
     justify-content: center;
     align-items: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* 阴影柔和化 */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); 
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
     user-select: none;
+    position: relative; /* 关键：为伪元素的绝对定位提供上下文 */
+    overflow: hidden;   /* 关键：确保伪元素不溢出卡牌边界，特别是圆角 */
+    -webkit-transform: translateZ(0); /* 硬件加速 hack，有时能改善 z-index 和渲染 */
+    transform: translateZ(0);
 }
 
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* 强制的白色不透明背景板 */
+    z-index: -1; /* 关键：将伪元素置于 .card 的内容 (包括 background-image) 之下 */
+    border-radius: inherit; /* 使伪元素的圆角与 .card 保持一致 */
+}
+/* =============================================== */
+
 .card.dragging {
-    opacity: 0.7; /* 拖动时可以稍微透明一点，但不是完全透明 */
+    opacity: 0.7; 
     cursor: grabbing;
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* 拖动时阴影加深 */
+    transform: scale(1.05) rotate(2deg) translateZ(0); /* 保持 translateZ */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
 }
 
 .card.selected {
-    transform: translateY(-10px) scale(1.07);
-    box-shadow: 0 8px 16px rgba(52, 152, 219, 0.4); /* 选中时用主题蓝色辉光 */
-    border: 2px solid #3498db; /* 选中时边框用主题蓝 */
+    transform: translateY(-10px) scale(1.07) translateZ(0); /* 保持 translateZ */
+    box-shadow: 0 8px 16px rgba(52, 152, 219, 0.4); 
+    border: 2px solid #3498db; 
 }
 
 .card.placeholder {
     background-image: none;
-    background-color: #e9ecef; /* 占位符背景色，与道背景类似 */
-    border: 2px dashed #adb5bd; /* 占位符边框 */
-    color: #6c757d; /* 占位符文字颜色 */
+    background-color: #e9ecef; 
+    border: 2px dashed #adb5bd; 
+    color: #6c757d; 
     font-size: 28px;
     box-shadow: none;
     cursor: default;
 }
+/* 如果占位符也需要移除 ::before (理论上不需要，因为它没有 background-image) */
+/* 但以防万一，如果占位符的 "+" 号被白色挡住了，可以这样：*/
+.card.placeholder::before {
+    display: none; /* 或者 background-color: transparent; */
+}
+
 
 .hand-type-display {
     font-size: 0.95em;
@@ -195,36 +212,36 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     font-weight: bold;
 }
 .hand-type-display.score-positive {
-    color: #28a745; /* 得分时用绿色 */
+    color: #28a745; 
 }
 
 
 .message-area, .validation-result, .total-score-display {
-    margin-top: 18px; /* 增加消息区上边距 */
-    padding: 14px; /* 增加消息区内边距 */
+    margin-top: 18px; 
+    padding: 14px; 
     border-radius: 8px;
     font-weight: bold;
     min-height: 22px;
     text-shadow: none;
 }
 .message-area {
-    background-color: #d1ecf1; /* 浅蓝色信息背景 */
-    color: #0c5460; /* 深蓝色信息文字 */
+    background-color: #d1ecf1; 
+    color: #0c5460; 
     border: 1px solid #bee5eb;
 }
 .message-area.error {
-    background-color: #f8d7da; /* 浅红色错误背景 */
-    color: #721c24; /* 深红色错误文字 */
+    background-color: #f8d7da; 
+    color: #721c24; 
     border: 1px solid #f5c6cb;
 }
 .message-area.success {
-    background-color: #d4edda; /* 浅绿色成功背景 */
-    color: #155724; /* 深绿色成功文字 */
+    background-color: #d4edda; 
+    color: #155724; 
     border: 1px solid #c3e6cb;
 }
 .message-area.special {
-    background-color: #fff3cd; /* 浅黄色特殊牌型背景 */
-    color: #856404; /* 深黄色特殊牌型文字 */
+    background-color: #fff3cd; 
+    color: #856404; 
     border: 1px solid #ffeeba;
 }
 
@@ -245,28 +262,26 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
 .total-score-display {
     margin-top: 12px;
     font-size: 1.25em;
-    color: #004085; /* 深蓝色总分文字 */
-    background-color: #cce5ff; /* 浅蓝色总分背景 */
-    padding: 10px; /* 调整内边距 */
+    color: #004085; 
+    background-color: #cce5ff; 
+    padding: 10px; 
     border-radius: 6px;
     border: 1px solid #b8daff;
 }
 
-/* 牌型高亮示例 */
 .arranged-zone.powerful-hand {
     border-style: solid;
-    animation: pulseBorderBright 1.5s infinite; /* 使用新的动画名，如果需要不同效果 */
+    animation: pulseBorderBright 1.5s infinite; 
 }
-/* 保持这些牌型特定边框色，但确保它们在亮背景下也好看 */
-.arranged-zone.type-straight-flush { border-color: #FFD700; } /* 金色 */
-.arranged-zone.type-four-of-a-kind { border-color: #dc3545; } /* 红色 */
-.arranged-zone.type-full-house { border-color: #6f42c1; } /* 紫色 */
-.arranged-zone.type-flush { border-color: #17a2b8; } /* 青色 */
-.arranged-zone.type-straight { border-color: #28a745; } /* 绿色 */
-.arranged-zone.type-three-of-a-kind { border-color: #fd7e14; } /* 橙色 */
+.arranged-zone.type-straight-flush { border-color: #FFD700; } 
+.arranged-zone.type-four-of-a-kind { border-color: #dc3545; } 
+.arranged-zone.type-full-house { border-color: #6f42c1; } 
+.arranged-zone.type-flush { border-color: #17a2b8; } 
+.arranged-zone.type-straight { border-color: #28a745; } 
+.arranged-zone.type-three-of-a-kind { border-color: #fd7e14; } 
 
 
-@keyframes pulseBorderBright { /* 针对亮色背景的辉光动画 */
+@keyframes pulseBorderBright { 
     0% { box-shadow: 0 0 3px rgba(0, 123, 255, 0.3); }
     50% { box-shadow: 0 0 12px rgba(0, 123, 255, 0.6); }
     100% { box-shadow: 0 0 3px rgba(0, 123, 255, 0.3); }
