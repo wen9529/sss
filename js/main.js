@@ -15,7 +15,7 @@ function initializeSocket() {
     // 假设你的 Serv00 域名是 your-username.serv00.net (或其他 Serv00 提供的域名)
     // **你需要将 "your-username.serv00.net" 替换为你的实际 Serv00 域名**
     const SERVER_HOST = "your-username.serv00.net"; // <--- 替换这里!
-    const SERVER_PORT = 45078;
+    const SERVER_PORT = 34709;
 
     // Serv00 通常支持 wss (安全 WebSocket) 如果你配置了SSL。
     // 如果没有SSL，或者不确定，先尝试 ws。
