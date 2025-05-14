@@ -4,118 +4,126 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background-color: #2c3e50; /* 深蓝灰色背景 */
-    color: #ecf0f1; /* 浅色文字 */
+    /* 背景调亮: 使用一个更柔和的浅灰色或米色系 */
+    background-color: #e9ebee; /* 例如：一个非常浅的灰色 */
+    /* 或者一个暖色调的米白 */
+    /* background-color: #f5f5f5; */
+    color: #333; /* 深色文字以保证对比度 */
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .game-container {
-    background-color: #34495e; /* 较浅的蓝灰色游戏区 */
-    padding: 20px;
+    /* 游戏容器背景调亮，但仍与body有区分 */
+    background-color: #ffffff; /* 白色背景 */
+    /* 或者一个非常浅的灰色 */
+    /* background-color: #f8f9fa; */
+    padding: 25px; /* 稍微增加内边距 */
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* 阴影可以柔和一些 */
     text-align: center;
     width: 95%;
     max-width: 1100px;
 }
 
 h1, h2, h3 {
-    color: #ecf0f1;
+    color: #2c3e50; /* 标题使用深蓝灰色，与浅色背景形成对比 */
     margin-top: 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    text-shadow: none; /* 在浅色背景下，文字阴影可能不需要 */
 }
-h1 { margin-bottom: 20px; font-size: 2.2em;}
-h2 { margin-bottom: 10px; font-size: 1.3em;}
-h3 { margin-bottom: 5px; font-size: 1.1em;}
+h1 { margin-bottom: 25px; font-size: 2.4em;}
+h2 { margin-bottom: 12px; font-size: 1.4em;}
+h3 { margin-bottom: 6px; font-size: 1.15em;}
 
 
 .controls {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px; /* 按钮间距可稍大 */
 }
 
 .controls button {
-    padding: 10px 18px;
-    font-size: 15px;
+    padding: 12px 20px; /* 按钮稍大一些 */
+    font-size: 16px;
     cursor: pointer;
-    background-color: #3498db; /* 鲜艳的蓝色 */
+    background-color: #3498db; 
     color: white;
     border: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    border-radius: 8px; /* 更圆润的边角 */
+    transition: background-color 0.25s ease, transform 0.1s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .controls button:hover {
-    background-color: #2980b9; /* 深一点的蓝色 */
+    background-color: #2980b9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .controls button:active {
     background-color: #1f638f;
     transform: translateY(1px);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .game-info-panel {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.1);
-    border-radius: 6px;
+    margin-bottom: 25px;
+    padding: 12px 15px; /* 调整内边距 */
+    background-color: #f0f3f5; /* 浅灰色信息面板背景 */
+    border-radius: 8px;
+    border: 1px solid #dfe4e8; /* 轻微边框 */
 }
 
 .audio-controls {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 .audio-controls label {
-    font-size: 0.9em;
-    color: #bdc3c7; /* 浅灰色 */
+    font-size: 0.95em;
+    color: #555; /* 深灰色标签文字 */
 }
 #soundToggle {
-    margin-right: 10px;
-    accent-color: #3498db; /* 匹配按钮颜色 */
+    margin-right: 12px;
+    accent-color: #3498db;
 }
 #volumeControl {
-    width: 80px; /* 调整音量条宽度 */
+    width: 90px;
     accent-color: #3498db;
 }
 
 .timer-section {
-    font-size: 1em;
-    color: #bdc3c7;
+    font-size: 1.05em;
+    color: #555;
 }
 #timerDisplay {
     font-weight: bold;
-    color: #f1c40f; /* 黄色计时 */
+    color: #e74c3c; /* 计时器用醒目的颜色，例如红色 */
 }
 
 
 .player-area, .arrangement-area {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: rgba(0,0,0,0.15); /* 更深的区域背景 */
-    border: 1px solid #4a6278; /* 边框颜色 */
-    border-radius: 8px;
+    margin-top: 25px;
+    padding: 20px; /* 增加内边距 */
+    background-color: #f8f9fa; /* 非常浅的灰色区域背景 */
+    border: 1px solid #dee2e6; /* 较浅的边框 */
+    border-radius: 10px;
 }
 
 .arrangement-area .arranged-hand-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* 道次之间的间距 */
 }
 
 .arranged-hand {
-    background-color: rgba(255,255,255,0.05); /* 非常轻微的道背景 */
-    padding: 10px;
-    border-radius: 6px;
+    background-color: #e9ecef; /* 每个道的背景，比区域背景稍深一点 */
+    padding: 15px; /* 增加内边距 */
+    border-radius: 8px;
 }
 
 .hand-zone {
@@ -123,18 +131,18 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: 115px;
-    padding: 10px;
-    border: 2px dashed #567086; /* 虚线颜色 */
-    border-radius: 6px;
-    margin-top: 5px;
+    min-height: 120px; /* 确保足够高度 */
+    padding: 15px; /* 增加内边距 */
+    border: 2px dashed #ced4da; /* 虚线边框颜色 */
+    border-radius: 8px;
+    margin-top: 8px; /* 调整与标题的间距 */
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .hand-zone.drag-over {
-    background-color: rgba(52, 152, 219, 0.2); /* 拖拽悬浮时背景高亮 */
+    background-color: #cfe2f3; /* 拖拽悬浮时浅蓝色高亮 */
     border-style: solid;
-    border-color: #3498db;
+    border-color: #a9ccee;
 }
 
 
@@ -143,36 +151,38 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     height: 100px;
     background-size: cover;
     background-position: center;
-    border: 1px solid #7f8c8d; /* 卡牌边框 */
+    /* 添加一个不透明的背景色，以防图片本身有透明区域或加载失败 */
+    background-color: #ffffff; /* 白色底，确保卡牌不透明 */
+    border: 1px solid #adb5bd; /* 卡牌边框 */
     border-radius: 6px;
     margin: 5px;
     cursor: grab;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* 阴影柔和化 */
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
     user-select: none;
 }
 
 .card.dragging {
-    opacity: 0.6;
+    opacity: 0.7; /* 拖动时可以稍微透明一点，但不是完全透明 */
     cursor: grabbing;
-    transform: scale(1.05) rotate(3deg); /* 轻微旋转效果 */
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* 拖动时阴影加深 */
 }
 
 .card.selected {
-    transform: translateY(-12px) scale(1.08);
-    box-shadow: 0 10px 20px rgba(241, 196, 15, 0.5); /* 金色选中辉光 */
-    border: 2px solid #f1c40f; /* 金色边框 */
+    transform: translateY(-10px) scale(1.07);
+    box-shadow: 0 8px 16px rgba(52, 152, 219, 0.4); /* 选中时用主题蓝色辉光 */
+    border: 2px solid #3498db; /* 选中时边框用主题蓝 */
 }
 
 .card.placeholder {
     background-image: none;
-    background-color: rgba(127, 140, 141, 0.2); /* 半透明占位符 */
-    border: 2px dashed #7f8c8d;
-    color: #95a5a6; /* 占位符文字颜色 */
+    background-color: #e9ecef; /* 占位符背景色，与道背景类似 */
+    border: 2px dashed #adb5bd; /* 占位符边框 */
+    color: #6c757d; /* 占位符文字颜色 */
     font-size: 28px;
     box-shadow: none;
     cursor: default;
@@ -180,82 +190,84 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
 
 .hand-type-display {
     font-size: 0.95em;
-    color: #e74c3c; /* 红色牌型提示 */
+    color: #e74c3c; 
     margin-left: 10px;
     font-weight: bold;
 }
-.hand-type-display.score-positive { /* 用于有额外得分的牌型 */
-    color: #2ecc71; /* 绿色 */
+.hand-type-display.score-positive {
+    color: #28a745; /* 得分时用绿色 */
 }
 
 
 .message-area, .validation-result, .total-score-display {
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 6px;
+    margin-top: 18px; /* 增加消息区上边距 */
+    padding: 14px; /* 增加消息区内边距 */
+    border-radius: 8px;
     font-weight: bold;
-    min-height: 20px;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    min-height: 22px;
+    text-shadow: none;
 }
-.message-area { /* 通用消息 */
-    background-color: rgba(26, 188, 156, 0.15); /* 青色系 */
-    color: #1abc9c;
-    border: 1px solid #1abc9c;
+.message-area {
+    background-color: #d1ecf1; /* 浅蓝色信息背景 */
+    color: #0c5460; /* 深蓝色信息文字 */
+    border: 1px solid #bee5eb;
 }
 .message-area.error {
-    background-color: rgba(231, 76, 60, 0.15);
-    color: #e74c3c;
-    border: 1px solid #e74c3c;
+    background-color: #f8d7da; /* 浅红色错误背景 */
+    color: #721c24; /* 深红色错误文字 */
+    border: 1px solid #f5c6cb;
 }
-.message-area.success { /* 用于成功操作，如“AI完成摆牌” */
-    background-color: rgba(46, 204, 113, 0.15);
-    color: #2ecc71;
-    border: 1px solid #2ecc71;
+.message-area.success {
+    background-color: #d4edda; /* 浅绿色成功背景 */
+    color: #155724; /* 深绿色成功文字 */
+    border: 1px solid #c3e6cb;
 }
-.message-area.special { /* 用于特殊牌型提示 */
-    background-color: rgba(241, 196, 15, 0.15); /* 金色系 */
-    color: #f1c40f;
-    border: 1px solid #f1c40f;
+.message-area.special {
+    background-color: #fff3cd; /* 浅黄色特殊牌型背景 */
+    color: #856404; /* 深黄色特殊牌型文字 */
+    border: 1px solid #ffeeba;
 }
 
-.validation-result { /* 专门用于倒水判断结果 */
+.validation-result {
     font-size: 1.1em;
 }
 .validation-result.invalid {
-    color: #e74c3c;
-    background-color: rgba(231, 76, 60, 0.15);
-    border: 1px solid #e74c3c;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
 }
 .validation-result.valid {
-    color: #2ecc71;
-    background-color: rgba(46, 204, 113, 0.15);
-    border: 1px solid #2ecc71;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
 }
 
 .total-score-display {
-    margin-top: 10px;
-    font-size: 1.2em;
-    color: #f1c40f;
-    background-color: rgba(0,0,0,0.1);
-    padding: 8px;
-    border-radius: 4px;
+    margin-top: 12px;
+    font-size: 1.25em;
+    color: #004085; /* 深蓝色总分文字 */
+    background-color: #cce5ff; /* 浅蓝色总分背景 */
+    padding: 10px; /* 调整内边距 */
+    border-radius: 6px;
+    border: 1px solid #b8daff;
 }
 
 /* 牌型高亮示例 */
-.arranged-zone.powerful-hand { /* 通用强牌高亮 */
+.arranged-zone.powerful-hand {
     border-style: solid;
-    animation: pulseBorder 1.5s infinite;
+    animation: pulseBorderBright 1.5s infinite; /* 使用新的动画名，如果需要不同效果 */
 }
-.arranged-zone.type-straight-flush { border-color: gold; }
-.arranged-zone.type-four-of-a-kind { border-color: orangered; }
-.arranged-zone.type-full-house { border-color: violet; }
-.arranged-zone.type-flush { border-color: deepskyblue; }
-.arranged-zone.type-straight { border-color: lightgreen; }
-.arranged-zone.type-three-of-a-kind { border-color: lightcoral; }
+/* 保持这些牌型特定边框色，但确保它们在亮背景下也好看 */
+.arranged-zone.type-straight-flush { border-color: #FFD700; } /* 金色 */
+.arranged-zone.type-four-of-a-kind { border-color: #dc3545; } /* 红色 */
+.arranged-zone.type-full-house { border-color: #6f42c1; } /* 紫色 */
+.arranged-zone.type-flush { border-color: #17a2b8; } /* 青色 */
+.arranged-zone.type-straight { border-color: #28a745; } /* 绿色 */
+.arranged-zone.type-three-of-a-kind { border-color: #fd7e14; } /* 橙色 */
 
 
-@keyframes pulseBorder {
-    0% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
-    50% { box-shadow: 0 0 15px rgba(255,255,255,0.5); }
-    100% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+@keyframes pulseBorderBright { /* 针对亮色背景的辉光动画 */
+    0% { box-shadow: 0 0 3px rgba(0, 123, 255, 0.3); }
+    50% { box-shadow: 0 0 12px rgba(0, 123, 255, 0.6); }
+    100% { box-shadow: 0 0 3px rgba(0, 123, 255, 0.3); }
 }
