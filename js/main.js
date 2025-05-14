@@ -30,7 +30,7 @@ function initializeSocket() {
 
     // 如果上面的 wss 连接失败，或者 Serv00 要求特定配置，你可能需要回退到 ws，
     // 或者查看 Serv00 关于 Node.js + Socket.IO 的文档。
-    // 如果 Serv00 做了反向代理，将一个标准端口 (如443 for wss) 映射到你的40239，
+    // 如果 Serv00 做了反向代理，将一个标准端口 (如443 for wss) 映射到你的34709，
     // 那么你可能不需要指定端口：socket = io(`wss://${SERVER_HOST}`);
     // --- 结束连接地址修改 ---
 
