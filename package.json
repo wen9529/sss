@@ -1,0 +1,22 @@
+{
+  "name": "thirteen-water-server",
+  "version": "1.0.0",
+  "description": "Backend server for the Thirteen Water (Pusoy Dos) multiplayer game.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",  // 或更新版本，例如 ^4.18.0
+    "socket.io": "^4.7.2" // 或更新版本
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"  // 或更新版本 (可选，用于开发时自动重启服务器)
+  },
+  "author": "Your Name", // 替换为你的名字或组织名
+  "license": "ISC", // 或者你选择的其他开源许可证
+  "engines": {
+    "node": ">=14.0.0" // 指定推荐的 Node.js 版本范围 (可选)
+  }
+}
