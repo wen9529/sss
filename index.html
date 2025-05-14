@@ -3,44 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>十三水游戏</title>
+    <title>高级十三水游戏</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
-        <h1>十三水摆牌</h1>
+        <h1>十三水</h1>
 
         <div class="controls">
             <button id="dealButton">发牌</button>
-            <button id="resetButton">重置</button>
-            <button id="autoArrangeButton" title="简单实现，可能非最优">自动摆牌(示例)</button>
+            <button id="resetButton">重置游戏</button>
+            <button id="checkArrangementButton">检查摆牌</button>
+            <button id="autoArrangeButton" title="AI尝试自动摆牌">智能摆牌</button>
+            <span id="timerDisplay"></span> <!-- Optional: For timed games or AI thinking time -->
         </div>
 
-        <div class="player-hand-area">
-            <h2>我的手牌 (13张)</h2>
-            <div id="playerHand" class="hand-zone">
+        <div id="messageArea" class="message-area"></div>
+
+        <div class="player-area">
+            <h2>我的手牌 (<span id="playerHandCount">0</span>张)</h2>
+            <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand">
                 <!-- 卡牌将通过JS动态添加 -->
             </div>
         </div>
 
         <div class="arrangement-area">
             <h2>摆牌区</h2>
-            <div class="arranged-hand">
-                <h3>头道 (3张) <span id="frontHandType" class="hand-type-display"></span></h3>
-                <div id="frontHand" class="hand-zone arranged-zone" data-size="3"></div>
-            </div>
-            <div class="arranged-hand">
-                <h3>中道 (5张) <span id="middleHandType" class="hand-type-display"></span></h3>
-                <div id="middleHand" class="hand-zone arranged-zone" data-size="5"></div>
-            </div>
-            <div class="arranged-hand">
-                <h3>尾道 (5张) <span id="backHandType" class="hand-type-display"></span></h3>
-                <div id="backHand" class="hand-zone arranged-zone" data-size="5"></div>
+            <div class="arranged-hand-container">
+                <div class="arranged-hand">
+                    <h3>头道 (3张) <span id="frontHandType" class="hand-type-display"></span></h3>
+                    <div id="frontHand" class="hand-zone arranged-zone droppable" data-zone-id="front" data-size="3"></div>
+                </div>
+                <div class="arranged-hand">
+                    <h3>中道 (5张) <span id="middleHandType" class="hand-type-display"></span></h3>
+                    <div id="middleHand" class="hand-zone arranged-zone droppable" data-zone-id="middle" data-size="5"></div>
+                </div>
+                <div class="arranged-hand">
+                    <h3>尾道 (5张) <span id="backHandType" class="hand-type-display"></span></h3>
+                    <div id="backHand" class="hand-zone arranged-zone droppable" data-zone-id="back" data-size="5"></div>
+                </div>
             </div>
         </div>
-        <div id="messageArea" class="message-area"></div>
+        <div id="validationResult" class="validation-result"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ES6 Module Import -->
+    <script type="module" src="js/main.js"></script>
+
+    <!-- Audio elements (optional) -->
+    <!--
+    <audio id="audioDeal" src="audio/deal.mp3" preload="auto"></audio>
+    <audio id="audioClick" src="audio/click.mp3" preload="auto"></audio>
+    <audio id="audioPlace" src="audio/place.mp3" preload="auto"></audio>
+    <audio id="audioInvalid" src="audio/invalid.mp3" preload="auto"></audio>
+    -->
 </body>
 </html>
