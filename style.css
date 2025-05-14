@@ -1,52 +1,85 @@
+html, body { /* 让 html 和 body 占满视口高度 */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 防止不必要的水平滚动条 */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+    display: flex; /* 使用 flex 布局来垂直居中内容（如果需要） */
+    flex-direction: column; /* 使 .game-container 能自然撑开 */
+    align-items: center; /* 水平居中 .game-container */
+    /* justify-content: center; */ /* 如果内容较少，可以垂直居中，但如果内容多，则从顶部开始 */
+    min-height: 100%; /* 确保 body 至少和视口一样高 */
     background-color: #e9ebee; 
     color: #333; 
-    margin: 0;
-    padding: 20px;
+    /* 移除 body 的 padding，让 .game-container 自己控制 */
+    /* padding: 20px; */ 
     box-sizing: border-box;
 }
 
 .game-container {
     background-color: #ffffff; 
-    padding: 25px; 
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15); 
+    padding: 20px; /* 内边距可以根据内容调整 */
+    border-radius: 0; /* 在“全屏”模式下，圆角可能不需要，或者只在非全屏时应用 */
+    /* box-shadow: 0 6px 18px rgba(0,0,0,0.15); */ /* 全屏时阴影可能不明显或不需要 */
     text-align: center;
-    width: 95%;
-    max-width: 1100px;
+    
+    /* === 主要修改：让 game-container 占满可用空间 === */
+    width: 100%; /* 占满父元素（body）的宽度 */
+    max-width: none; /* 取消最大宽度限制 */
+    min-height: 100%; /* 至少和视口一样高 */
+    flex-grow: 1; /* 在 flex 布局中，允许其占据剩余空间 */
+    display: flex; /* 内部也使用 flex，方便内容组织 */
+    flex-direction: column;
+    box-sizing: border-box; /* 确保 padding 和 border 不会增加总宽度/高度 */
 }
+
+/* 如果希望在小屏幕上保留一些边距，可以使用媒体查询 */
+@media (min-width: 1200px) { /* 例如，当屏幕宽度大于1200px时，恢复一些限制 */
+    .game-container {
+        width: 95%;
+        max-width: 1100px; /* 恢复之前的最大宽度 */
+        min-height: auto; /* 高度由内容决定 */
+        border-radius: 12px; /* 恢复圆角 */
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* 恢复阴影 */
+        margin-top: 20px; /* 恢复上边距 */
+        margin-bottom: 20px; /* 添加下边距 */
+    }
+    body { /* 在大屏幕上给body一些padding，让game-container不贴边 */
+        padding: 20px;
+    }
+}
+
 
 h1, h2, h3 {
     color: #2c3e50; 
     margin-top: 0;
     text-shadow: none; 
 }
-h1 { margin-bottom: 25px; font-size: 2.4em;}
-h2 { margin-bottom: 12px; font-size: 1.4em;}
-h3 { margin-bottom: 6px; font-size: 1.15em;}
+h1 { margin-bottom: 20px; font-size: 2.2em;} /* 调整标题大小和间距 */
+h2 { margin-bottom: 10px; font-size: 1.3em;}
+h3 { margin-bottom: 5px; font-size: 1.1em;}
 
 
 .controls {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 12px; 
+    gap: 10px;
+    padding: 10px 0; /* 给控制按钮区域一些垂直内边距 */
 }
 
 .controls button {
-    padding: 12px 20px; 
-    font-size: 16px;
+    padding: 10px 18px; 
+    font-size: 15px;
     cursor: pointer;
     background-color: #3498db; 
     color: white;
     border: none;
-    border-radius: 8px; 
+    border-radius: 6px; 
     transition: background-color 0.25s ease, transform 0.1s ease, box-shadow 0.25s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -65,33 +98,34 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    padding: 12px 15px; 
+    margin-bottom: 15px;
+    padding: 10px 15px; 
     background-color: #f0f3f5; 
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid #dfe4e8; 
+    /* position: sticky; top: 0; z-index: 10; */ /* 如果希望信息面板在滚动时固定在顶部 */
 }
 
 .audio-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 .audio-controls label {
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: #555; 
 }
 #soundToggle {
-    margin-right: 12px;
+    margin-right: 10px;
     accent-color: #3498db;
 }
 #volumeControl {
-    width: 90px;
+    width: 80px;
     accent-color: #3498db;
 }
 
 .timer-section {
-    font-size: 1.05em;
+    font-size: 1em;
     color: #555;
 }
 #timerDisplay {
@@ -99,25 +133,38 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     color: #e74c3c; 
 }
 
+/* 游戏主要内容区域，允许滚动 */
+.game-content-wrapper {
+    flex-grow: 1; /* 占据剩余垂直空间 */
+    overflow-y: auto; /* 如果内容超出，则显示垂直滚动条 */
+    padding: 0 15px; /* 左右留一些内边距 */
+    width: 100%;
+    box-sizing: border-box;
+}
+
 
 .player-area, .arrangement-area {
-    margin-top: 25px;
-    padding: 20px; 
+    margin-top: 20px;
+    padding: 15px; 
     background-color: #f8f9fa; 
     border: 1px solid #dee2e6; 
-    border-radius: 10px;
+    border-radius: 8px; /* 保留区域的圆角 */
 }
+.player-area:first-child, .arrangement-area:first-child {
+    margin-top: 0; /* 第一个区域不需要上边距 */
+}
+
 
 .arrangement-area .arranged-hand-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 15px; 
 }
 
 .arranged-hand {
     background-color: #e9ecef; 
-    padding: 15px; 
-    border-radius: 8px;
+    padding: 12px; 
+    border-radius: 6px;
 }
 
 .hand-zone {
@@ -125,11 +172,11 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    min-height: 120px; 
-    padding: 15px; 
+    min-height: 115px; 
+    padding: 10px; 
     border: 2px dashed #ced4da; 
-    border-radius: 8px;
-    margin-top: 8px; 
+    border-radius: 6px;
+    margin-top: 6px; 
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -139,19 +186,14 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     border-color: #a9ccee;
 }
 
-/* === 主要修改在这里：.card, .card::before, 和 .card::after === */
 .card {
     width: 70px;
     height: 100px;
-    /* .card 元素不再直接负责背景图或纯色背景 */
     border: 1px solid #adb5bd; 
     border-radius: 6px;
     margin: 5px;
     cursor: grab;
-    display: inline-block; /* 使用 inline-block 或 inline-flex 都可以 */
-    /* display: inline-flex; 
-    justify-content: center;
-    align-items: center; */ /* 如果卡牌内没有真实子元素，这些flex属性意义不大 */
+    display: inline-block; 
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1); 
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
     user-select: none;
@@ -159,10 +201,9 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     overflow: hidden;  
     -webkit-transform: translateZ(0); 
     transform: translateZ(0);
-    vertical-align: top; /* 确保 inline-block 元素对齐良好 */
+    vertical-align: top; 
 }
 
-/* 白色不透明背景板层 */
 .card::before {
     content: "";
     position: absolute;
@@ -171,11 +212,10 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     width: 100%;
     height: 100%;
     background-color: #ffffff; 
-    z-index: 1; /* 背景板在最底层 (相对于此卡牌的伪元素堆叠) */
-    border-radius: inherit; /* 确保圆角一致 */
+    z-index: 1; 
+    border-radius: inherit; 
 }
 
-/* 扑克牌图案层 */
 .card::after {
     content: "";
     position: absolute;
@@ -183,14 +223,13 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--card-image); /* 使用 CSS 自定义属性来设置图片 */
+    background-image: var(--card-image); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 2; /* 图案层在背景板之上 */
-    border-radius: inherit; /* 确保圆角一致 */
+    z-index: 2; 
+    border-radius: inherit;
 }
-/* =============================================== */
 
 .card.dragging {
     opacity: 0.7; 
@@ -206,23 +245,21 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
 }
 
 .card.placeholder {
-    background-image: none; /* 占位符本身不应该有背景图 */
+    background-image: none; 
     background-color: #e9ecef; 
     border: 2px dashed #adb5bd; 
     color: #6c757d; 
-    font-size: 28px; /* 确保+号可见 */
+    font-size: 28px; 
     box-shadow: none;
     cursor: default;
-    display: inline-flex; /* 使用flex来居中+号 */
+    display: inline-flex; 
     justify-content: center;
     align-items: center;
 }
-/* 占位符不需要伪元素背景或图案 */
 .card.placeholder::before,
 .card.placeholder::after {
     display: none; 
 }
-
 
 .hand-type-display {
     font-size: 0.95em;
@@ -234,59 +271,37 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     color: #28a745; 
 }
 
-
 .message-area, .validation-result, .total-score-display {
-    margin-top: 18px; 
-    padding: 14px; 
-    border-radius: 8px;
-    font-weight: bold;
-    min-height: 22px;
-    text-shadow: none;
-}
-.message-area {
-    background-color: #d1ecf1; 
-    color: #0c5460; 
-    border: 1px solid #bee5eb;
-}
-.message-area.error {
-    background-color: #f8d7da; 
-    color: #721c24; 
-    border: 1px solid #f5c6cb;
-}
-.message-area.success {
-    background-color: #d4edda; 
-    color: #155724; 
-    border: 1px solid #c3e6cb;
-}
-.message-area.special {
-    background-color: #fff3cd; 
-    color: #856404; 
-    border: 1px solid #ffeeba;
-}
-
-.validation-result {
-    font-size: 1.1em;
-}
-.validation-result.invalid {
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-}
-.validation-result.valid {
-    color: #155724;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-}
-
-.total-score-display {
-    margin-top: 12px;
-    font-size: 1.25em;
-    color: #004085; 
-    background-color: #cce5ff; 
-    padding: 10px; 
+    margin: 15px 0; /* 统一消息区域的上下边距 */
+    padding: 12px; 
     border-radius: 6px;
-    border: 1px solid #b8daff;
+    font-weight: bold;
+    min-height: 20px;
+    text-shadow: none;
+    width: calc(100% - 30px); /* 配合 .game-content-wrapper 的 padding */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
+/* (message-area, validation-result, total-score-display 的具体颜色样式保持不变) */
+.message-area { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+.message-area.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.message-area.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.message-area.special { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.validation-result.invalid { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; font-size: 1.1em;}
+.validation-result.valid { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; font-size: 1.1em;}
+.total-score-display { font-size: 1.2em; color: #004085; background-color: #cce5ff; border: 1px solid #b8daff;}
+
+
+/* 页脚区域，用于放置总得分等信息，使其固定在底部（如果需要） */
+.game-footer {
+    padding: 10px 15px;
+    background-color: #f0f3f5;
+    border-top: 1px solid #dfe4e8;
+    /* width: 100%; */ /* 如果 .game-container 是 flex 容器，这个可能不需要 */
+    margin-top: auto; /* 将其推到底部（如果 .game-container 是 flex column） */
+}
+
 
 .arranged-zone.powerful-hand {
     border-style: solid;
