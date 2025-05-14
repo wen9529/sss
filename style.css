@@ -1,77 +1,85 @@
-html, body { /* 让 html 和 body 占满视口高度 */
+/* === 全局设置与根元素 === */
+html, body {
     height: 100%;
+    width: 100%; 
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* 防止不必要的水平滚动条 */
+    overflow-x: hidden; 
+    box-sizing: border-box; 
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex; /* 使用 flex 布局来垂直居中内容（如果需要） */
-    flex-direction: column; /* 使 .game-container 能自然撑开 */
-    align-items: center; /* 水平居中 .game-container */
-    /* justify-content: center; */ /* 如果内容较少，可以垂直居中，但如果内容多，则从顶部开始 */
-    min-height: 100%; /* 确保 body 至少和视口一样高 */
+    display: flex;
+    flex-direction: column; 
+    min-height: 100%; 
     background-color: #e9ebee; 
     color: #333; 
-    /* 移除 body 的 padding，让 .game-container 自己控制 */
-    /* padding: 20px; */ 
-    box-sizing: border-box;
 }
 
+/* === 游戏主容器全屏化 === */
 .game-container {
     background-color: #ffffff; 
-    padding: 20px; /* 内边距可以根据内容调整 */
-    border-radius: 0; /* 在“全屏”模式下，圆角可能不需要，或者只在非全屏时应用 */
-    /* box-shadow: 0 6px 18px rgba(0,0,0,0.15); */ /* 全屏时阴影可能不明显或不需要 */
     text-align: center;
-    
-    /* === 主要修改：让 game-container 占满可用空间 === */
-    width: 100%; /* 占满父元素（body）的宽度 */
-    max-width: none; /* 取消最大宽度限制 */
-    min-height: 100%; /* 至少和视口一样高 */
-    flex-grow: 1; /* 在 flex 布局中，允许其占据剩余空间 */
-    display: flex; /* 内部也使用 flex，方便内容组织 */
-    flex-direction: column;
-    box-sizing: border-box; /* 确保 padding 和 border 不会增加总宽度/高度 */
+    width: 100%;        
+    flex-grow: 1;       
+    display: flex;      
+    flex-direction: column; 
+    box-sizing: border-box; 
+    max-width: none;
+    border-radius: 0; 
+    box-shadow: none;
+    margin: 0; 
 }
 
-/* 如果希望在小屏幕上保留一些边距，可以使用媒体查询 */
-@media (min-width: 1200px) { /* 例如，当屏幕宽度大于1200px时，恢复一些限制 */
+/* (可选) 大屏幕下的样式回退 */
+@media (min-width: 1200px) {
+    body {
+        padding: 20px; /* 在大屏幕上给body一些padding */
+        align-items: center; /* 水平居中 .game-container */
+    }
     .game-container {
-        width: 95%;
-        max-width: 1100px; /* 恢复之前的最大宽度 */
-        min-height: auto; /* 高度由内容决定 */
-        border-radius: 12px; /* 恢复圆角 */
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* 恢复阴影 */
-        margin-top: 20px; /* 恢复上边距 */
-        margin-bottom: 20px; /* 添加下边距 */
-    }
-    body { /* 在大屏幕上给body一些padding，让game-container不贴边 */
-        padding: 20px;
+        width: auto; 
+        max-width: 1100px; 
+        height: auto; 
+        min-height: calc(100vh - 40px); 
+        flex-grow: 0; 
+        border-radius: 12px; 
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        margin: 0 auto; 
     }
 }
 
-
-h1, h2, h3 {
-    color: #2c3e50; 
-    margin-top: 0;
-    text-shadow: none; 
+/* === 游戏容器内部结构调整 === */
+h1 { 
+    margin: 15px 0; 
+    font-size: 2.2em; 
+    color: #2c3e50;
+    text-shadow: none;
+    flex-shrink: 0; 
 }
-h1 { margin-bottom: 20px; font-size: 2.2em;} /* 调整标题大小和间距 */
-h2 { margin-bottom: 10px; font-size: 1.3em;}
-h3 { margin-bottom: 5px; font-size: 1.1em;}
+h2 { 
+    margin-bottom: 10px; 
+    font-size: 1.3em;
+    color: #2c3e50;
+    text-shadow: none;
+}
+h3 { 
+    margin-bottom: 5px; 
+    font-size: 1.1em;
+    color: #2c3e50;
+    text-shadow: none;
+}
 
-
-.controls {
-    margin-bottom: 15px;
+.controls { 
+    margin-bottom: 15px; 
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    padding: 10px 0; /* 给控制按钮区域一些垂直内边距 */
+    padding: 10px 0; 
+    flex-shrink: 0;
 }
-
 .controls button {
     padding: 10px 18px; 
     font-size: 15px;
@@ -83,7 +91,6 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     transition: background-color 0.25s ease, transform 0.1s ease, box-shadow 0.25s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 .controls button:hover {
     background-color: #2980b9;
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -94,18 +101,17 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.game-info-panel {
+.game-info-panel { 
+    margin-bottom: 15px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
     padding: 10px 15px; 
     background-color: #f0f3f5; 
     border-radius: 6px;
     border: 1px solid #dfe4e8; 
-    /* position: sticky; top: 0; z-index: 10; */ /* 如果希望信息面板在滚动时固定在顶部 */
+    flex-shrink: 0;
 }
-
 .audio-controls {
     display: flex;
     align-items: center;
@@ -123,7 +129,6 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     width: 80px;
     accent-color: #3498db;
 }
-
 .timer-section {
     font-size: 1em;
     color: #555;
@@ -133,40 +138,49 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     color: #e74c3c; 
 }
 
-/* 游戏主要内容区域，允许滚动 */
+.message-area { 
+    margin: 10px 15px; 
+    padding: 12px; 
+    border-radius: 6px;
+    font-weight: bold;
+    min-height: 20px;
+    text-shadow: none;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+.message-area { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+.message-area.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.message-area.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.message-area.special { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+
+/* 主要游戏内容区域 */
 .game-content-wrapper {
-    flex-grow: 1; /* 占据剩余垂直空间 */
-    overflow-y: auto; /* 如果内容超出，则显示垂直滚动条 */
-    padding: 0 15px; /* 左右留一些内边距 */
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding: 0 15px 15px 15px; 
     width: 100%;
     box-sizing: border-box;
 }
-
-
+.game-content-wrapper > div:first-child {
+    margin-top: 0; 
+}
 .player-area, .arrangement-area {
-    margin-top: 20px;
+    margin-top: 15px; 
     padding: 15px; 
     background-color: #f8f9fa; 
     border: 1px solid #dee2e6; 
-    border-radius: 8px; /* 保留区域的圆角 */
+    border-radius: 8px;
 }
-.player-area:first-child, .arrangement-area:first-child {
-    margin-top: 0; /* 第一个区域不需要上边距 */
-}
-
-
 .arrangement-area .arranged-hand-container {
     display: flex;
     flex-direction: column;
     gap: 15px; 
 }
-
 .arranged-hand {
     background-color: #e9ecef; 
     padding: 12px; 
     border-radius: 6px;
 }
-
 .hand-zone {
     display: flex;
     flex-wrap: wrap;
@@ -179,13 +193,13 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     margin-top: 6px; 
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-
 .hand-zone.drag-over {
     background-color: #cfe2f3; 
     border-style: solid;
     border-color: #a9ccee;
 }
 
+/* 卡牌样式 */
 .card {
     width: 70px;
     height: 100px;
@@ -203,7 +217,6 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     transform: translateZ(0);
     vertical-align: top; 
 }
-
 .card::before {
     content: "";
     position: absolute;
@@ -215,7 +228,6 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     z-index: 1; 
     border-radius: inherit; 
 }
-
 .card::after {
     content: "";
     position: absolute;
@@ -230,20 +242,17 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     z-index: 2; 
     border-radius: inherit;
 }
-
 .card.dragging {
     opacity: 0.7; 
     cursor: grabbing;
     transform: scale(1.05) rotate(2deg) translateZ(0); 
     box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
 }
-
 .card.selected {
     transform: translateY(-10px) scale(1.07) translateZ(0); 
     box-shadow: 0 8px 16px rgba(52, 152, 219, 0.4); 
     border: 2px solid #3498db; 
 }
-
 .card.placeholder {
     background-image: none; 
     background-color: #e9ecef; 
@@ -261,6 +270,7 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
     display: none; 
 }
 
+/* 牌型提示 */
 .hand-type-display {
     font-size: 0.95em;
     color: #e74c3c; 
@@ -270,39 +280,6 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
 .hand-type-display.score-positive {
     color: #28a745; 
 }
-
-.message-area, .validation-result, .total-score-display {
-    margin: 15px 0; /* 统一消息区域的上下边距 */
-    padding: 12px; 
-    border-radius: 6px;
-    font-weight: bold;
-    min-height: 20px;
-    text-shadow: none;
-    width: calc(100% - 30px); /* 配合 .game-content-wrapper 的 padding */
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-}
-/* (message-area, validation-result, total-score-display 的具体颜色样式保持不变) */
-.message-area { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
-.message-area.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-.message-area.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-.message-area.special { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
-.validation-result.invalid { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; font-size: 1.1em;}
-.validation-result.valid { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; font-size: 1.1em;}
-.total-score-display { font-size: 1.2em; color: #004085; background-color: #cce5ff; border: 1px solid #b8daff;}
-
-
-/* 页脚区域，用于放置总得分等信息，使其固定在底部（如果需要） */
-.game-footer {
-    padding: 10px 15px;
-    background-color: #f0f3f5;
-    border-top: 1px solid #dfe4e8;
-    /* width: 100%; */ /* 如果 .game-container 是 flex 容器，这个可能不需要 */
-    margin-top: auto; /* 将其推到底部（如果 .game-container 是 flex column） */
-}
-
-
 .arranged-zone.powerful-hand {
     border-style: solid;
     animation: pulseBorderBright 1.5s infinite; 
@@ -313,6 +290,27 @@ h3 { margin-bottom: 5px; font-size: 1.1em;}
 .arranged-zone.type-flush { border-color: #17a2b8; } 
 .arranged-zone.type-straight { border-color: #28a745; } 
 .arranged-zone.type-three-of-a-kind { border-color: #fd7e14; } 
+
+/* 页脚区域 */
+.game-footer {
+    padding: 10px 15px;
+    background-color: #f0f3f5;
+    border-top: 1px solid #dfe4e8;
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0; 
+}
+.validation-result, .total-score-display {
+    margin: 5px 0; /* 调整页脚内元素的间距 */
+    padding: 8px; 
+    border-radius: 6px;
+    font-weight: bold;
+    text-shadow: none;
+    box-sizing: border-box;
+}
+.validation-result.invalid { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; font-size: 1.05em;}
+.validation-result.valid { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; font-size: 1.05em;}
+.total-score-display { font-size: 1.15em; color: #004085; background-color: #cce5ff; border: 1px solid #b8daff;}
 
 
 @keyframes pulseBorderBright { 
