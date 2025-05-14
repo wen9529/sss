@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- 添加 user-scalable=no 阻止缩放 -->
     <title>高级十三水游戏</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,46 +29,48 @@
             </div>
         </div>
 
-        <div id="messageArea" class="message-area"></div>
+        <div id="messageArea" class="message-area"></div> <!-- 消息区可以放在滚动区外部或内部 -->
 
-        <div class="player-area">
-            <h2>我的手牌 (<span id="playerHandCount">0</span>张)</h2>
-            <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand">
-                <!-- 卡牌将通过JS动态添加 -->
+        <!-- 新增一个包裹主要游戏内容的容器 -->
+        <div class="game-content-wrapper">
+            <div class="player-area">
+                <h2>我的手牌 (<span id="playerHandCount">0</span>张)</h2>
+                <div id="playerHand" class="hand-zone droppable" data-zone-id="playerHand"></div>
             </div>
+
+            <div class="arrangement-area">
+                <h2>摆牌区</h2>
+                <div class="arranged-hand-container">
+                    <div class="arranged-hand">
+                        <h3>头道 (3张) <span id="frontHandType" class="hand-type-display"></span></h3>
+                        <div id="frontHand" class="hand-zone arranged-zone droppable" data-zone-id="front" data-size="3"></div>
+                    </div>
+                    <div class="arranged-hand">
+                        <h3>中道 (5张) <span id="middleHandType" class="hand-type-display"></span></h3>
+                        <div id="middleHand" class="hand-zone arranged-zone droppable" data-zone-id="middle" data-size="5"></div>
+                    </div>
+                    <div class="arranged-hand">
+                        <h3>尾道 (5张) <span id="backHandType" class="hand-type-display"></span></h3>
+                        <div id="backHand" class="hand-zone arranged-zone droppable" data-zone-id="back" data-size="5"></div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of game-content-wrapper -->
+        
+        <div class="game-footer"> <!-- 页脚，用于放置总分和验证结果 -->
+            <div id="validationResult" class="validation-result"></div>
+            <div id="totalScoreDisplay" class="total-score-display">总得分: 0 水</div>
         </div>
 
-        <div class="arrangement-area">
-            <h2>摆牌区</h2>
-            <div class="arranged-hand-container">
-                <div class="arranged-hand">
-                    <h3>头道 (3张) <span id="frontHandType" class="hand-type-display"></span></h3>
-                    <div id="frontHand" class="hand-zone arranged-zone droppable" data-zone-id="front" data-size="3"></div>
-                </div>
-                <div class="arranged-hand">
-                    <h3>中道 (5张) <span id="middleHandType" class="hand-type-display"></span></h3>
-                    <div id="middleHand" class="hand-zone arranged-zone droppable" data-zone-id="middle" data-size="5"></div>
-                </div>
-                <div class="arranged-hand">
-                    <h3>尾道 (5张) <span id="backHandType" class="hand-type-display"></span></h3>
-                    <div id="backHand" class="hand-zone arranged-zone droppable" data-zone-id="back" data-size="5"></div>
-                </div>
-            </div>
-        </div>
-        <div id="validationResult" class="validation-result"></div>
-        <div id="totalScoreDisplay" class="total-score-display">总得分: 0 水</div>
-    </div>
+    </div> <!-- end of game-container -->
 
-    <!-- ES6 Module Import -->
     <script type="module" src="js/main.js"></script>
-
-    <!-- Audio elements (你需要提供这些音频文件) -->
+    <!-- Audio elements -->
     <audio id="audioDeal" src="audio/deal.mp3" preload="auto"></audio>
     <audio id="audioClick" src="audio/click.mp3" preload="auto"></audio>
     <audio id="audioPlace" src="audio/place.mp3" preload="auto"></audio>
     <audio id="audioInvalid" src="audio/invalid.mp3" preload="auto"></audio>
     <audio id="audioWin" src="audio/win.mp3" preload="auto"></audio>
-    <audio id="audioSpecial" src="audio/special.mp3" preload="auto"></audio> <!-- 特殊牌型音效 -->
-
+    <audio id="audioSpecial" src="audio/special.mp3" preload="auto"></audio>
 </body>
 </html>
