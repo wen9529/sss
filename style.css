@@ -139,30 +139,30 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     border-color: #a9ccee;
 }
 
-/* === 主要修改在这里：.card 和 .card::before === */
+/* === 主要修改在这里：.card, .card::before, 和 .card::after === */
 .card {
     width: 70px;
     height: 100px;
-    /* background-color: #ffffff; */ /* 这个可以移除或注释掉，因为伪元素会提供背景 */
-    background-size: cover; 
-    background-position: center;
-    /* background-image 会应用到这个元素上 */
+    /* .card 元素不再直接负责背景图或纯色背景 */
     border: 1px solid #adb5bd; 
     border-radius: 6px;
     margin: 5px;
     cursor: grab;
-    display: inline-flex; 
+    display: inline-block; /* 使用 inline-block 或 inline-flex 都可以 */
+    /* display: inline-flex; 
     justify-content: center;
-    align-items: center;
+    align-items: center; */ /* 如果卡牌内没有真实子元素，这些flex属性意义不大 */
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1); 
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
     user-select: none;
-    position: relative; /* 关键：为伪元素的绝对定位提供上下文 */
-    overflow: hidden;   /* 关键：确保伪元素不溢出卡牌边界，特别是圆角 */
-    -webkit-transform: translateZ(0); /* 硬件加速 hack，有时能改善 z-index 和渲染 */
+    position: relative; 
+    overflow: hidden;  
+    -webkit-transform: translateZ(0); 
     transform: translateZ(0);
+    vertical-align: top; /* 确保 inline-block 元素对齐良好 */
 }
 
+/* 白色不透明背景板层 */
 .card::before {
     content: "";
     position: absolute;
@@ -170,38 +170,57 @@ h3 { margin-bottom: 6px; font-size: 1.15em;}
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ffffff; /* 强制的白色不透明背景板 */
-    z-index: -1; /* 关键：将伪元素置于 .card 的内容 (包括 background-image) 之下 */
-    border-radius: inherit; /* 使伪元素的圆角与 .card 保持一致 */
+    background-color: #ffffff; 
+    z-index: 1; /* 背景板在最底层 (相对于此卡牌的伪元素堆叠) */
+    border-radius: inherit; /* 确保圆角一致 */
+}
+
+/* 扑克牌图案层 */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--card-image); /* 使用 CSS 自定义属性来设置图片 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2; /* 图案层在背景板之上 */
+    border-radius: inherit; /* 确保圆角一致 */
 }
 /* =============================================== */
 
 .card.dragging {
     opacity: 0.7; 
     cursor: grabbing;
-    transform: scale(1.05) rotate(2deg) translateZ(0); /* 保持 translateZ */
+    transform: scale(1.05) rotate(2deg) translateZ(0); 
     box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
 }
 
 .card.selected {
-    transform: translateY(-10px) scale(1.07) translateZ(0); /* 保持 translateZ */
+    transform: translateY(-10px) scale(1.07) translateZ(0); 
     box-shadow: 0 8px 16px rgba(52, 152, 219, 0.4); 
     border: 2px solid #3498db; 
 }
 
 .card.placeholder {
-    background-image: none;
+    background-image: none; /* 占位符本身不应该有背景图 */
     background-color: #e9ecef; 
     border: 2px dashed #adb5bd; 
     color: #6c757d; 
-    font-size: 28px;
+    font-size: 28px; /* 确保+号可见 */
     box-shadow: none;
     cursor: default;
+    display: inline-flex; /* 使用flex来居中+号 */
+    justify-content: center;
+    align-items: center;
 }
-/* 如果占位符也需要移除 ::before (理论上不需要，因为它没有 background-image) */
-/* 但以防万一，如果占位符的 "+" 号被白色挡住了，可以这样：*/
-.card.placeholder::before {
-    display: none; /* 或者 background-color: transparent; */
+/* 占位符不需要伪元素背景或图案 */
+.card.placeholder::before,
+.card.placeholder::after {
+    display: none; 
 }
 
 
