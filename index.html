@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>十三水游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>十三水摆牌</h1>
+
+        <div class="controls">
+            <button id="dealButton">发牌</button>
+            <button id="resetButton">重置</button>
+            <button id="autoArrangeButton" title="简单实现，可能非最优">自动摆牌(示例)</button>
+        </div>
+
+        <div class="player-hand-area">
+            <h2>我的手牌 (13张)</h2>
+            <div id="playerHand" class="hand-zone">
+                <!-- 卡牌将通过JS动态添加 -->
+            </div>
+        </div>
+
+        <div class="arrangement-area">
+            <h2>摆牌区</h2>
+            <div class="arranged-hand">
+                <h3>头道 (3张) <span id="frontHandType" class="hand-type-display"></span></h3>
+                <div id="frontHand" class="hand-zone arranged-zone" data-size="3"></div>
+            </div>
+            <div class="arranged-hand">
+                <h3>中道 (5张) <span id="middleHandType" class="hand-type-display"></span></h3>
+                <div id="middleHand" class="hand-zone arranged-zone" data-size="5"></div>
+            </div>
+            <div class="arranged-hand">
+                <h3>尾道 (5张) <span id="backHandType" class="hand-type-display"></span></h3>
+                <div id="backHand" class="hand-zone arranged-zone" data-size="5"></div>
+            </div>
+        </div>
+        <div id="messageArea" class="message-area"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
